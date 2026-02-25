@@ -20,8 +20,8 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center h-full">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground text-center drop-shadow-2xl">
-          Happy Birthday
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-thin tracking-tight text-foreground text-center drop-shadow-2xl">
+          Happy B/day, Dad!
         </h1>
       </div>
     </section>

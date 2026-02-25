@@ -19,17 +19,18 @@ interface Track {
 }
 
 const TRACKS: Track[] = [
-  { name: "Track 01 — Midnight Pulse", duration: "03:42", durationSeconds: 222, src: "" },
-  { name: "Track 02 — Neon Drift", duration: "04:15", durationSeconds: 255, src: "" },
-  { name: "Track 03 — Echo Chamber", duration: "03:58", durationSeconds: 238, src: "" },
-  { name: "Track 04 — Static Bloom", duration: "05:01", durationSeconds: 301, src: "" },
-  { name: "Track 05 — Last Signal", duration: "04:33", durationSeconds: 273, src: "" },
+  { name: "Track 01 — Cathlik", duration: "03:42", durationSeconds: 222, src: "/audio/Cathlik.mp3" },
+  { name: "Track 02 — Smth", duration: "04:15", durationSeconds: 255, src: "/audio/Smth.mp3" },
+  { name: "Track 03 — Until", duration: "03:58", durationSeconds: 238, src: "/audio/Until.mp3" },
+  { name: "Track 04 — Semicircles", duration: "05:01", durationSeconds: 301, src: "/audio/Semicircles.mp3" },
+  { name: "Track 05 — Ether", duration: "04:33", durationSeconds: 273, src: "/audio/Ether.mp3" },
+  { name: "Track 06 — Kitsune", duration: "04:33", durationSeconds: 273, src: "/audio/Kitsune.mp3" },
 ];
 
 // ╔══════════════════════════════════════════════════════════════╗
 // ║  📝 ALBUM NAME — Change the album title here                ║
 // ╚══════════════════════════════════════════════════════════════╝
-const ALBUM_NAME = "AFTERGLOW";
+const ALBUM_NAME = "BIRTHDAY-EP_26";
 
 // ═══════════════════════════════════════════════════════════════
 //  🎧 AUDIO PLAYER LOGIC — handles play/pause/seek/progress
