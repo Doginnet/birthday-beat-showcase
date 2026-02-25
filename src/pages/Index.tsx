@@ -19,12 +19,12 @@ interface Track {
 }
 
 const TRACKS: Track[] = [
-  { name: "Track 01 — Cathlik", duration: "03:42", durationSeconds: 222, src: "/audio/Cathlik.mp3" },
-  { name: "Track 02 — Smth", duration: "04:15", durationSeconds: 255, src: "/audio/Smth.mp3" },
-  { name: "Track 03 — Until", duration: "03:58", durationSeconds: 238, src: "/audio/Until.mp3" },
-  { name: "Track 04 — Semicircles", duration: "05:01", durationSeconds: 301, src: "/audio/Semicircles.mp3" },
-  { name: "Track 05 — Ether", duration: "04:33", durationSeconds: 273, src: "/audio/Ether.mp3" },
-  { name: "Track 06 — Kitsune", duration: "04:33", durationSeconds: 273, src: "/audio/Kitsune.mp3" },
+  { name: "Track 01 — Cathlik", duration: "05:33", durationSeconds: 333, src: "/audio/Cathlik.mp3" },
+  { name: "Track 02 — Smth", duration: "05:15", durationSeconds: 315, src: "/audio/Smth.mp3" },
+  { name: "Track 03 — Until", duration: "07:05", durationSeconds: 425, src: "/audio/Until.mp3" },
+  { name: "Track 04 — Semicircles", duration: "05:46", durationSeconds: 346, src: "/audio/Semicircles.mp3" },
+  { name: "Track 05 — Ether", duration: "08:41", durationSeconds: 521, src: "/audio/Ether.mp3" },
+  { name: "Track 06 — Kitsune", duration: "07:00", durationSeconds: 420, src: "/audio/Kitsune.mp3" },
 ];
 
 // ╔══════════════════════════════════════════════════════════════╗
@@ -106,6 +106,9 @@ const Index = () => {
         cancelAnimationFrame(animFrameRef.current);
         return;
       }
+
+      // Cancel any previously running animation loop before starting a new one
+      cancelAnimationFrame(animFrameRef.current);
 
       // Switching to a different track → reset ALL progress bars
       if (currentTrack !== index) {
