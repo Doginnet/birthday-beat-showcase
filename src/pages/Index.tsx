@@ -41,56 +41,9 @@ const Index = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState<number[]>(new Array(TRACKS.length).fill(0));
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const animFrameRef = useRef<number>(0);
-
-  useEffect(() => {
-    return () => cancelAnimationFrame(animFrameRef.current);
-  }, []);
-
   // ── Reset all track progress bars to zero ──
   const resetAllProgress = useCallback(() => {
     setProgress(new Array(TRACKS.length).fill(0));
-  }, []);
-
-  // ── Update progress bar in real-time during playback ──
-  const updateProgress = useCallback(() => {
-    const audio = audioRef.current;
-    if (audio && currentTrack !== null && !audio.paused) {
-      const p = audio.duration ? audio.currentTime / audio.duration : 0;
-      setProgress((prev) => {
-        const next = [...prev];
-        next[currentTrack] = p;
-        return next;
-      });
-      animFrameRef.current = requestAnimationFrame(updateProgress);
-    }
-  }, [currentTrack]);
-
-  // ── Simulate playback when no audio file is loaded (demo mode) ──
-  const simulatePlayback = useCallback((index: number) => {
-    const startTime = Date.now();
-    const totalMs = TRACKS[index].durationSeconds * 1000;
-
-    const tick = () => {
-      const elapsed = Date.now() - startTime;
-      const p = Math.min(elapsed / totalMs, 1);
-      setProgress((prev) => {
-        const next = [...prev];
-        next[index] = p;
-        return next;
-      });
-      if (p < 1) {
-        animFrameRef.current = requestAnimationFrame(tick);
-      } else {
-        setIsPlaying(false);
-        // Auto-play next track
-        if (index < TRACKS.length - 1) {
-          setTimeout(() => playTrack(index + 1), 300);
-        }
-      }
-    };
-    cancelAnimationFrame(animFrameRef.current);
-    animFrameRef.current = requestAnimationFrame(tick);
   }, []);
 
   // ── Play or pause a track by index ──
@@ -103,37 +56,23 @@ const Index = () => {
       if (currentTrack === index && isPlaying) {
         audio.pause();
         setIsPlaying(false);
-        cancelAnimationFrame(animFrameRef.current);
         return;
       }
 
-      // Cancel any previously running animation loop before starting a new one
-      cancelAnimationFrame(animFrameRef.current);
-
-      // Switching to a different track → reset ALL progress bars
+      // Switching to a different track → reset progress, change src, and set as current
       if (currentTrack !== index) {
         resetAllProgress();
-        const src = TRACKS[index].src;
-        if (src) {
-          audio.src = src;
-          audio.load();
-        }
+        audio.src = TRACKS[index].src;
+        audio.load();
         setCurrentTrack(index);
       }
 
-      if (TRACKS[index].src) {
-        audio.play().then(() => {
-          setIsPlaying(true);
-          animFrameRef.current = requestAnimationFrame(updateProgress);
-        }).catch(() => {});
-      } else {
-        // Demo mode
+      // Play the track (it will be the new one if switched, or resumed if paused)
+      audio.play().then(() => {
         setIsPlaying(true);
-        setCurrentTrack(index);
-        simulatePlayback(index);
-      }
+      }).catch(() => {});
     },
-    [currentTrack, isPlaying, updateProgress, resetAllProgress, simulatePlayback]
+    [currentTrack, isPlaying, resetAllProgress]
   );
 
   // ── "Play All" button handler ──
@@ -179,7 +118,7 @@ const Index = () => {
   // ╚══════════════════════════════════════════════════════════════╝
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
       <audio
         ref={audioRef}
         onEnded={handleAudioEnded}
@@ -206,10 +145,10 @@ const Index = () => {
         {/* Album header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <p className="text-xs text-muted-foreground tracking-[0.3em] uppercase mb-1">
+            <p className="text-xs text-muted-foreground tracking-[0.3em] uppercase mb-1 ">
               Album
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-wider text-foreground">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-wider text-foreground text-neon-purple ">
               {ALBUM_NAME}
             </h2>
           </div>
