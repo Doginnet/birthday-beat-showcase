@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Play } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import TrackRow from "@/components/TrackRow";
@@ -118,7 +118,13 @@ const Index = () => {
   // ╚══════════════════════════════════════════════════════════════╝
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="min-h-screen bg-black">
+      {/* Background Image Layer */}
+      <div className="fixed inset-0 z-0 bg-[url('@/assets/hero-bg.jpg')] bg-cover bg-center bg-no-repeat"></div>
+
+      {/* Vignette Overlay */}
+      <div className="fixed inset-0 z-20 pointer-events-none bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(0,0,0,0.6)_90%)]"></div>
+
       <audio
         ref={audioRef}
         onEnded={handleAudioEnded}
@@ -136,54 +142,56 @@ const Index = () => {
         }}
       />
 
-      {/* ── Hero Section (edit in src/components/HeroSection.tsx) ── */}
-      <HeroSection />
+      {/* Scrollable Content Container */}
+      <div className="relative z-10">
+        <HeroSection />
 
-      {/* ── Album + Track List Section ── */}
-      <main className="relative z-10 max-w-3xl mx-auto px-4 pb-20 -mt-8">
+        <div className="relative z-30 max-w-3xl mx-auto -mt-8 p-8 mb-10 rounded-[25px] border border-white/10 bg-gradient-to-b from-[rgba(25,25,25,0.4)] to-[rgba(25,25,25,0.1)] backdrop-blur-md">
+          <main className="px-4 pb-8">
+            {/* Album header */}
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <p className="text-xs text-muted-foreground tracking-[0.3em] uppercase mb-1 ">
+                  Album
+                </p>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-wider text-foreground text-neon-purple neon-shadow-purple">
+                  {ALBUM_NAME}
+                </h2>
+              </div>
+              <button
+                onClick={handlePlayAll}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-neon-red text-primary-foreground text-sm font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-105 neon-glow-red"
+              >
+                <Play className="w-4 h-4" fill="currentColor" />
+                Play All
+              </button>
+            </div>
 
-        {/* Album header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <p className="text-xs text-muted-foreground tracking-[0.3em] uppercase mb-1 ">
-              Album
+            {/* Track list (each row: src/components/TrackRow.tsx) */}
+            <div className="flex flex-col gap-3">
+              {TRACKS.map((track, i) => (
+                <TrackRow
+                  key={i}
+                  index={i}
+                  name={track.name}
+                  duration={track.duration}
+                  isPlaying={currentTrack === i && isPlaying}
+                  progress={progress[i]}
+                  onPlayPause={() => playTrack(i)}
+                  onSeek={(p) => handleSeek(i, p)}
+                  onDownload={() => handleDownload(i)}
+                  audioSrc={track.src}
+                />
+              ))}
+            </div>
+
+            {/* ── Footer text ── */}
+            <p className="text-center text-muted-foreground text-xs mt-12 tracking-widest uppercase">
+              Made with love ♥
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-wider text-foreground text-neon-purple ">
-              {ALBUM_NAME}
-            </h2>
-          </div>
-          <button
-            onClick={handlePlayAll}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-neon-red text-primary-foreground text-sm font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-105 neon-glow-red"
-          >
-            <Play className="w-4 h-4" fill="currentColor" />
-            Play All
-          </button>
+          </main>
         </div>
-
-        {/* Track list (each row: src/components/TrackRow.tsx) */}
-        <div className="flex flex-col gap-3">
-          {TRACKS.map((track, i) => (
-            <TrackRow
-              key={i}
-              index={i}
-              name={track.name}
-              duration={track.duration}
-              isPlaying={currentTrack === i && isPlaying}
-              progress={progress[i]}
-              onPlayPause={() => playTrack(i)}
-              onSeek={(p) => handleSeek(i, p)}
-              onDownload={() => handleDownload(i)}
-              audioSrc={track.src}
-            />
-          ))}
-        </div>
-
-        {/* ── Footer text ── */}
-        <p className="text-center text-muted-foreground text-xs mt-12 tracking-widest uppercase">
-          Made with love ♥
-        </p>
-      </main>
+      </div>
     </div>
   );
 };

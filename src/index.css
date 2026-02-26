@@ -74,11 +74,18 @@
   .neon-glow-purple {
     box-shadow: var(--neon-glow-purple);
   }
+  .neon-shadow-purple {
+    text-shadow: var(--neon-glow-purple);
+  }
+  .neon-shadow-red {
+    text-shadow: var(--neon-glow-red);
+  }
 
   .text-neon-red {
     color: hsl(var(--neon-red));
   }
 
+  /* Text color here  */
   .text-neon-purple {
     color: hsl(var(--neon-purple));
   }
@@ -89,5 +96,14 @@
 
   .bg-neon-purple {
     background-color: hsl(var(--neon-purple));
+  }
+
+  .bg-header {
+    background-color: rgba(21, 20, 20, 0.56);
+    backdrop-filter: blur(25px);
+    max-width: 95%;
+    border-radius: 55px;
+    border: solid rgb(151, 3, 90) 1px;
+    box-shadow: 1px 1px 15px #121212;
   }
 }
