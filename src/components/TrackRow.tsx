@@ -29,7 +29,7 @@ const TrackRow = ({
   };
 
   return (
-    <div className="glass rounded-lg p-4 flex items-center gap-4 group transition-all duration-300 hover:border-neon-red/20">
+    <div className="glass rounded-lg p-4 flex items-center gap-4 group transition-all duration-300 hover:border-neon-red/70">
       {/* Track number */}
       <span className="text-muted-foreground text-sm w-6 text-right font-mono">
         {String(index + 1).padStart(2, "0")}

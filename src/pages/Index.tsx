@@ -30,7 +30,7 @@ const TRACKS: Track[] = [
 // ╔══════════════════════════════════════════════════════════════╗
 // ║  📝 ALBUM NAME — Change the album title here                ║
 // ╚══════════════════════════════════════════════════════════════╝
-const ALBUM_NAME = "BIRTHDAY-EP_26";
+const ALBUM_NAME = "BIRTHDAY-EP'57 (2026)";
 
 // ═══════════════════════════════════════════════════════════════
 //  🎧 AUDIO PLAYER LOGIC — handles play/pause/seek/progress
@@ -120,10 +120,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black">
       {/* Background Image Layer */}
-      <div className="fixed inset-0 z-0 bg-[url('@/assets/hero-bg.jpg')] bg-cover bg-center bg-no-repeat"></div>
+      <div className="fixed inset-0 z-0 bg-[url('@/assets/hero-bg.jpg')] bg-cover bg-center bg-no-repeat blur"></div>
 
       {/* Vignette Overlay */}
-      <div className="fixed inset-0 z-20 pointer-events-none bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(0,0,0,0.6)_90%)]"></div>
+      <div className="fixed inset-0 z-20 pointer-events-none  bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(0,0,0,0.6)_90%)]"></div>
 
       <audio
         ref={audioRef}
@@ -143,24 +143,28 @@ const Index = () => {
       />
 
       {/* Scrollable Content Container */}
-      <div className="relative z-10">
+      <div className="relative z-10 -top-[55px]  ">
         <HeroSection />
 
-        <div className="relative z-30 max-w-3xl mx-auto -mt-8 p-8 mb-10 rounded-[25px] border border-white/10 bg-gradient-to-b from-[rgba(25,25,25,0.4)] to-[rgba(25,25,25,0.1)] backdrop-blur-md">
+        <div className="relative z-30 max-w-3xl mx-auto mt-8  p-8 mb-10 rounded-[25px] border border-white/10 bg-gradient-to-b from-[rgba(25,25,25,0.5)] to-[rgba(25,25,25,0.2)] backdrop-blur-md">
           <main className="px-4 pb-8">
             {/* Album header */}
             <div className="flex items-center justify-between mb-8">
               <div>
-                <p className="text-xs text-muted-foreground tracking-[0.3em] uppercase mb-1 ">
-                  Album
-                </p>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-wider text-foreground text-neon-purple neon-shadow-purple">
-                  {ALBUM_NAME}
+                              <p className="text-xs ml-1 text-muted-foreground tracking-[0.3em] uppercase mb-1 ">
+                                EP
+                              </p>
+                              <img
+                                src="src/assets/cover.jpg"
+                                alt="Album Cover"
+                                className="w-20 h-20 object-cover rounded-md mb-2"
+                              />
+                              <h2 className="text-2xl md:text-3xl font-bold tracking-wider text-foreground text-neon-purple neon-shadow-album">                  {ALBUM_NAME}
                 </h2>
               </div>
               <button
                 onClick={handlePlayAll}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-neon-red text-primary-foreground text-sm font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-105 neon-glow-red"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-neon-red text-primary-foreground text-sm font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-105 hover:neon-glow-red"
               >
                 <Play className="w-4 h-4" fill="currentColor" />
                 Play All
