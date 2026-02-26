@@ -143,10 +143,10 @@ const Index = () => {
       />
 
       {/* Scrollable Content Container */}
-      <div className="relative z-10 -top-[55px]  ">
+      <div className="relative z-10 -top-[100px]  ">
         <HeroSection />
 
-        <div className="relative z-30 max-w-3xl mx-auto mt-8  p-8 mb-10 rounded-[25px] border border-white/10 bg-gradient-to-b from-[rgba(25,25,25,0.5)] to-[rgba(25,25,25,0.2)] backdrop-blur-md">
+        <div className="relative z-30 max-w-3xl mx-auto mt-0  p-8 mb-10 rounded-[25px] border border-white/10 bg-gradient-to-b from-[rgba(25,25,25,0.5)] to-[rgba(25,25,25,0.2)] backdrop-blur-md">
           <main className="px-4 pb-8">
             {/* Album header */}
             <div className="flex items-center justify-between mb-8">

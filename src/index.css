@@ -68,9 +68,9 @@
   }
 
   .neon-shadow-album {
-     text-shadow: var(--neon-glow-purple);
-     /* text-shadow: 1px 1px 8px #c2bebe80; */
-     text-decoration: underline;
+    text-shadow: var(--neon-glow-purple);
+    /* text-shadow: 1px 1px 8px #c2bebe80; */
+    text-decoration: underline;
   }
 
   .neon-glow-red {
@@ -80,9 +80,11 @@
   .neon-glow-purple {
     box-shadow: var(--neon-glow-purple);
   }
+
   .neon-shadow-purple {
     text-shadow: var(--neon-glow-purple);
   }
+
   .neon-shadow-red {
     text-shadow: var(--neon-glow-red);
   }
@@ -102,6 +104,11 @@
     border: 1px solid hsl(var(--neon-red));
   }
 
+  .border-glow {
+    border: 1px solid hsl(var(--neon-red));
+
+  }
+
   .bg-neon-purple {
     background-color: hsl(var(--neon-purple));
   }
@@ -116,9 +123,9 @@
     box-shadow: 1px 1px 10px #121212;
   }
 
- .heading-text {
-  color: rgb(211, 201, 201);
-  text-shadow: 1px 1px 3px red;
-  text-shadow: 2px 1px 10px rgba(211, 201, 201, 0.726);
- }
+  .heading-text {
+    color: rgb(211, 201, 201);
+    text-shadow: 1px 1px 3px red;
+    text-shadow: 2px 1px 10px rgba(211, 201, 201, 0.726);
+  }
 }
