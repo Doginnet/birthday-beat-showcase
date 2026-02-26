@@ -155,7 +155,7 @@ const Index = () => {
                                 EP
                               </p>
                               <img
-                                src="src/assets/cover.jpg"
+                                src="cover.jpg"
                                 alt="Album Cover"
                                 className="w-20 h-20 object-cover rounded-md mb-2"
                               />
